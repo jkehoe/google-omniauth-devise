@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoogleOmniauthDevise</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="flex bg-stone-50 h-screen">
+    <nav class="fixed w-full h-12 border-b border-slate-300 px-3 py-1 flex items-center">
+    <div class="text-xl font-bold text-indigo-500 ml-4">Omniauth with Google</div>
+    <div class="flex grow justify-end">
+      <% if current_user %>
+        <%= link_to "Sign out",
+        destroy_user_session_path,          
+        data: { turbo: false },
+        :method => :delete,
+        class: "text-indigo-800 hover:text-indigo-500" %>
+      <% end %>
+    </div>
+  </nav>
+    <main class="container flex h-full w-full mt-12">
+      <%= yield %>
+    </main>
+  </body>
+</html>
